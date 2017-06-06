@@ -9,9 +9,14 @@ RUN BUILD_DATE=$(TZ="America/Los_Angeles" date -I) \
 RUN r -e 'source("https://bioconductor.org/biocLite.R"); \
 		biocLite("minfi"); \
 		biocLite("BiocParallel"); \
-		biocLite("shinyMethyl"); \
-		biocLite("missMethyl"); \
-		biocLite("DMRcate");'\
 && rm -rf /tmp/downloaded_packages/
 
-	
+RUN r -e 'source("https://bioconductor.org/biocLite.R"); \
+		biocLite("shinyMethyl"); \
+		biocLite("missMethyl"); \
+&& rm -rf /tmp/downloaded_packages/
+
+
+RUN r -e 'source("https://bioconductor.org/biocLite.R"); \
+		biocLite("DMRcate");'\
+&& rm -rf /tmp/downloaded_packages/

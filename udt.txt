@@ -1,3 +1,5 @@
+export R_VERSION=3.4.0
+
 apt-get update \
   && apt-get install -y --no-install-recommends \
     bash-completion \
@@ -56,7 +58,6 @@ apt-get update \
   && apt-get install -y --no-install-recommends $BUILDDEPS
 
 
-export R_VERSION=3.4
 
 cd tmp/ 
   ## Download source code
