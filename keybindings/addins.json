@@ -1,0 +1,8 @@
+{
+    "bookdown::mathquill" : "Ctrl+L",
+    "citr::insert_citation" : "Ctrl+B",
+    "docthis::doc_this_addin" : "Ctrl+D",
+    "ggThemeAssist::ggThemeAssistAddin" : "Ctrl+G",
+    "rcrossref::crAddins" : "Ctrl+R",
+    "xaringan::inf_mr" : "Ctrl+M"
+}
