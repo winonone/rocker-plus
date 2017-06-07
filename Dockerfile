@@ -17,7 +17,6 @@ df-bin libnetcdf-dev \
 && installGithub.r yihui/xaringan calligross/ggthemeassist mdlincoln/docthis ric
 hfitz/storr richfitz/remake  \
 && echo "options(servr.daemon = TRUE)" > /home/rstudio/.Rprofile \
-&&  mkdir /home/rstudio/keybindings \
 && r -e 'source("https://bioconductor.org/biocLite.R"); \
                 biocLite("minfi"); \
                 biocLite("BiocParallel");' \
