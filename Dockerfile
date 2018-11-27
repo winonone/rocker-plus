@@ -8,15 +8,14 @@ RUN apt-get update \
 && BUILD_DATE=$(TZ="America/Los_Angeles" date -I) \ 
 && install2.r --error --repos https://mran.microsoft.com/snapshot/${BUILD_DATE} \ 
         printr RcppArmadillo foreach matrixStats gridExtra XML \
-        assertr fulltext roxygen2 DT udunits2 units crosstalk png raster rgeos \
+        assertr roxygen2 DT udunits2 units crosstalk png raster rgeos \
         leaflet rticles questionr bookdown citr rcrossref ggedit \
-        R6 yaml digest crayon optparse printr \ 
-&& installGithub.r yihui/xaringan calligross/ggthemeassist mdlincoln/docthis richfitz/storr richfitz/remake \ 
+        R6 yaml digest crayon optparse printr ggThemeAssist \ 
+&& installGithub.r yihui/xaringan mdlincoln/docthis richfitz/storr richfitz/remake \ 
 && echo "options(servr.daemon = TRUE)" > /home/rstudio/.Rprofile \ 
-&& r -e 'if (!requireNamespace("BiocManager")); \
-                install.packages("BiocManager"); \
-                BiocManager::install(c("minfi","BiocParallel","missMethyl","DMRcate")); \
-                BiocManager::install(c("GenomicFeatures", "AnnotationDbi"));' \
+&& r -e 'install.packages("BiocManager"); \
+         BiocManager::install(c("minfi","BiocParallel","missMethyl","DMRcate")); \
+         BiocManager::install(c("GenomicFeatures", "AnnotationDbi"));' \
 && rm -rf /tmp/downloaded_packages/ \
 && mkdir -p /ufrc /bio /rlts /scratch/local
 
