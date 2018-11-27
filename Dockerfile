@@ -1,7 +1,7 @@
-FROM rocker/verse:3.4.1
+FROM rocker/verse
 
 RUN apt-get update \
-&& apt-get install -y libudunits2-dev libudunits2-0 libgdal-dev libproj-dev netcdf-bin libnetcdf-dev cifs-utils \
+&& apt-get install -y libudunits2-dev libgsl0-dev libudunits2-0 libgdal-dev libproj-dev netcdf-bin libnetcdf-dev cifs-utils \
 && apt-get autoremove -y \
 && apt-get autoclean -y \
 && rm -rf /var/lib/apt/lists/* \
@@ -10,14 +10,16 @@ RUN apt-get update \
         printr RcppArmadillo foreach matrixStats gridExtra XML \
         assertr fulltext roxygen2 DT udunits2 units crosstalk png raster rgeos \
         leaflet rticles questionr bookdown citr rcrossref ggedit \
-        R6 yaml digest crayon optparse \ 
+        R6 yaml digest crayon optparse printr \ 
 && installGithub.r yihui/xaringan calligross/ggthemeassist mdlincoln/docthis richfitz/storr richfitz/remake \ 
 && echo "options(servr.daemon = TRUE)" > /home/rstudio/.Rprofile \ 
-&& r -e 'source("https://bioconductor.org/biocLite.R");  \
-                biocLite("minfi"); \
-                biocLite("BiocParallel"); \
-                biocLite("missMethyl");  \
-                biocLite("DMRcate");' \
-&& rm -rf /tmp/downloaded_packages/
+&& r -e 'if (!requireNamespace("BiocManager")); \
+                install.packages("BiocManager"); \
+                BiocManager::install(c("minfi","BiocParallel","missMethyl","DMRcate")); \
+                BiocManager::install(c("GenomicFeatures", "AnnotationDbi"));' \
+&& rm -rf /tmp/downloaded_packages/ \
+&& mkdir -p /ufrc /bio /rlts /scratch/local
+
+RUN export ADD=shiny && bash /etc/cont-init.d/add
 
 COPY keybindings/ /home/rstudio/.R/rstudio/keybindings/
