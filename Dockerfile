@@ -1,4 +1,4 @@
-FROM rocker/verse
+FROM rocker/binder
 
 RUN apt-get update \
 && apt-get install -y libudunits2-dev libgsl0-dev libudunits2-0 libgdal-dev libproj-dev netcdf-bin libnetcdf-dev cifs-utils \
