@@ -1,6 +1,6 @@
 FROM rocker/binder
 
-RUN sudo apt-get update \
+RUN apt-get update \
         && apt-get install -y libudunits2-dev libgsl0-dev libudunits2-0 libgdal-dev libproj-dev netcdf-bin libnetcdf-dev cifs-utils \
         && apt-get install -y  libcgal-dev  libglu1-mesa-dev  libglu1-mesa-dev libx11-dev libftgl2 libfreetype6-dev \
         && apt-get autoremove -y \
